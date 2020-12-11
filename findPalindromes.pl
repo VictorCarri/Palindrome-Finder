@@ -2,11 +2,12 @@
 use strict;
 use warnings;
 use Data::Dumper qw(Dumper);
+use diagnostics;
 
 # @desc Determines whether a given string is a palindrome
 # @return True if the word is a palindrome, false otherwise
 sub isPalindrome {
-	my $nArgs = scalar(@_) # Get # of arguments
+	my $nArgs = scalar(@_); # Get # of arguments
 
 	if ($nArgs != 1) # Bad call
 	{
@@ -15,15 +16,18 @@ sub isPalindrome {
 
 	else
 	{
-		my $strLen = length $1; # To determine how to split the string
+		my $strLen = length $_[0]; # To determine how to split the string
+		print "The string's length is " . $strLen . "\n";
 		
-	/*	if (($strLen % 2) == 0) # Even length
+		if (($strLen % 2) == 0) # Even length
 		{
+			print "The string's length is an even natural number.\n";
 		}
 
 		else # Odd length
 		{
-		}*/
+			print "The string's length is an odd natural number.\n";
+		}
 	}
 }
 
@@ -47,6 +51,8 @@ else
 	while (my $row = <$fh>)
 	{
 		chomp $row;
-		print "Is $row a palindrome? " . isPalindrome($row) . "\n";
+		isPalindrome $row;
 	}
+
+	close $fh;
 }
